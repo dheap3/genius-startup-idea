@@ -1,6 +1,7 @@
 # Your startup name here
 
 I might build candy land here
+Or I could build a recipe list -> grocery list
 
 [My Notes](notes.md)
 
