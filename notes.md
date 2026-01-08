@@ -1,5 +1,8 @@
 # CS 260 Notes
 
+# Git
+For git in vscode I need to make sure I synchronize anything I add with the little refresh icon or do a git pull
+
 [My startup - Simon](https://simon.cs260.click)
 
 ## Helpful links
