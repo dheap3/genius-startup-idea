@@ -19,9 +19,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 - [x] Proper use of Markdown
 - [x] A concise and compelling elevator pitch
-- [ ] Description of key features
-- [ ] Description of how you will use each technology
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [x] Description of key features
+- [x] Description of how you will use each technology
+- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
@@ -29,33 +29,48 @@ Have you ever had a sweet tooth you can't satisfy? Are you feeling nostalgic abo
 
 ### Design
 
-![Design image](placeholder.png)
+<img width="900" height="500" alt="Screenshot 2026-01-10 105110" src="https://github.com/user-attachments/assets/42d409d6-aa34-4502-8178-5e7f00ba07c9" />
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<img width="900" height="500" alt="Screenshot 2026-01-10 105103" src="https://github.com/user-attachments/assets/2a478970-e4c6-425c-a455-9acf8dc42803" />
+
+The login page will navigate to the game play page where players can draw their card and move their character
 
 ```mermaid
 sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
+    actor Red Player
+    actor Blue Player
+    actor Green Player
+    Red Player->>Server: Red Player move
+    Server -->>Green Player: Red Player move
+    Server -->>Blue Player: Red Player move
+    Green Player->>Server: Green Player move
+    Server -->>Blue Player: Green Player move
+    Server -->> Red Player: Green Player move
 ```
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Each player will draw cards
+- Each player can move to the colored squares on the board
+- Login over https
+- Registering into the database too
+- Each player position will be saved in the database
+- Everyone will be notified when someone wins the game
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - Creation of basic pages for rules, login, and gameplay
+- **CSS** - color palletes that match the game and have great contrast, changing smoothly for different screen sizes
+- **React** - help with login, display position of players, changing the card played
+- **Service** - backend service with endpoints for
+      - login
+      - update player
+      - update card
+      - notify players
+- **DB/Login** - storing of login data, active players, positions, can't play if not logged in
+- **WebSocket** - when cards are played or players are moved it is updated for everyone
 
 ## 🚀 AWS deliverable
 
