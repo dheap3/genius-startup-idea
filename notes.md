@@ -2,6 +2,18 @@
 
 # Git
 For git in vscode I need to make sure I synchronize anything I add with the little refresh icon or do a git pull
+# AWS
+In aws I signed in with my byu email and got
+- dns name (heapgames.click) through route 53
+- ec2 instance (the server box in US East (N. Virginia) - us-east-1) with a custom name and using an ami key to match the class design. The instance type indicates how powerful it is and if my server gets slow I can upgrade it
+- my key pair from creating the ec2 instance is on my computer under "C:\Users\david\CS-260-Server\cs260-david.pem"
+- I can ssh into my server to edit the caddy file (ssh -i "C:\Users\david\CS-260-Server\cs260-david.pem" ubuntu@100.25.32.157). The caddy file contains where I enter my website to connect to the services running on the server
+- I added an elastic ip address so that my server won't change ip address if it stops and starts
+- I added 2 type A records under hosted zones -> records so that the domain name I bought will redirect to the public ipv4 address I got (the elastic one)
+- caddy does redirection and handles some certificates for me
+- when I edited the caddy file on the server through ssh AND THEN restarted the server it made it https friendly
+
+[My new site - heapgames.click](https://heapgames.click/)
 
 [My startup - Simon](https://simon.cs260.click)
 
