@@ -1,4 +1,4 @@
-# Candy Kingdom
+# Candy Land
 
 [My Notes](notes.md)
 
@@ -73,15 +73,15 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - I added 4 html pages: The home page index.html, play.html, progress.html, and about.html
+- [x] **Proper HTML element usage** - I properly added headers, footers, main, divs, etc. 
+- [x] **Links** - I added a link to my git hub repo in the footer and 4 other pages in the header
+- [x] **Text** - Text explaining the different components of the game is added
+- [x] **3rd party API placeholder** - There is a placeholder to replace later
+- [x] **Images** - Game Board, logos, and images present
+- [x] **Login placeholder** - Input fields and buttons await functionality
+- [x] **DB data placeholder** - Fake content is added to represent where the database info will be
+- [x] **WebSocket placeholder** - Progress bars will update to show how far people are and the game board will show other players in the game
 
 ## 🚀 CSS deliverable
 
