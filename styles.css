@@ -1,0 +1,42 @@
+html {
+    background-color: #8bd2f9;
+    font-family: Arial, sans-serif;
+}
+
+@media (orientation: portrait) {
+    html {
+        background-color: #ff2ba3;
+    }
+}
+
+/* img {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+} */
+
+img[alt="Candy Land Logo"] {
+    width: 200px;
+}
+
+.player-info {
+    font-size: medium;
+    margin-bottom: 10px;
+}
+
+.play-area {
+    border: 5px solid #000000;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+#gameboard {
+    width: 200px;
+    height: 150px;
+}
+
+.card {
+    width: 30px;
+    height: 90;
+}
