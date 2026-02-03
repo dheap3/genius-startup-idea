@@ -17,6 +17,10 @@ In aws I signed in with my byu email and got
 
 [My startup - Simon](https://simon.cs260.click)
 
+## Html
+This was pretty easy. I just threw in the images and copied the headers and footers for each page. I'll style it better with css and use react later to fix the copying.
+
+
 ## Helpful links
 
 - [Course instruction](https://github.com/webprogramming260)
