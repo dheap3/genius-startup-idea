@@ -54,3 +54,23 @@ menu a {
 menu a:hover {
     background: rgba(255, 255, 255, 0.75);
 }
+
+footer {
+    padding: 14px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+    color: #0b2a3a;
+    font-weight: 600;
+}
+
+footer a {
+    color: #0b2a3a;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
