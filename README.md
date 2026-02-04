@@ -88,10 +88,10 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] **Visually appealing colors and layout. No overflowing elements.** - Each Element stays in it's area and has visually appealing colors that match candy land
-- [ ] **Use of a CSS framework** - 
+- [ ] **Use of a CSS framework** - I did not use bootstrap, I wanted to get this in on time
 - [x] **All visual elements styled using CSS** - Everything was styled using css to look prettier. This includes boxes and image placement
 - [x] **Responsive to window resizing using flexbox and/or grid display** - When you go to mobile everything moves to not be squished
-- [ ] **Use of a imported font** - 
+- [x] **Use of a imported font** - I used the Milonga font from google
 - [x] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I selected classes, ids, elements, and even the whole page to set fonts and colors
 
 ## 🚀 React part 1: Routing deliverable
