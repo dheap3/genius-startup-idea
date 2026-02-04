@@ -5,12 +5,6 @@ html {
     font-style: normal;
 }
 
-@media (orientation: portrait) {
-    html {
-        /* background-color: #ff2ba3; */
-    }
-}
-
 hr {
     margin: 0;
     border: none;
