@@ -87,12 +87,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Visually appealing colors and layout. No overflowing elements.** - I did not complete this part of the deliverable.
-- [ ] **Use of a CSS framework** - I did not complete this part of the deliverable.
-- [ ] **All visual elements styled using CSS** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing using flexbox and/or grid display** - I did not complete this part of the deliverable.
-- [ ] **Use of a imported font** - I did not complete this part of the deliverable.
-- [ ] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I did not complete this part of the deliverable.
+- [x] **Visually appealing colors and layout. No overflowing elements.** - Each Element stays in it's area and has visually appealing colors that match candy land
+- [ ] **Use of a CSS framework** - 
+- [x] **All visual elements styled using CSS** - Everything was styled using css to look prettier. This includes boxes and image placement
+- [x] **Responsive to window resizing using flexbox and/or grid display** - When you go to mobile everything moves to not be squished
+- [ ] **Use of a imported font** - 
+- [x] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I selected classes, ids, elements, and even the whole page to set fonts and colors
 
 ## 🚀 React part 1: Routing deliverable
 
