@@ -24,6 +24,18 @@ main {
     max-width: 1100px;
 }
 
-img {
-    display: none;
+#gameboard {
+    width: min(900px, 100%);
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+}
+
+.card {
+    width: 110px;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18);
 }
