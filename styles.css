@@ -1,11 +1,13 @@
 html {
     background-color: #8bd2f9;
-    font-family: Arial, sans-serif;
+    font-family: "Milonga", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 @media (orientation: portrait) {
     html {
-        background-color: #ff2ba3;
+        /* background-color: #ff2ba3; */
     }
 }
 
