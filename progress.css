@@ -47,3 +47,13 @@ progress {
     border-radius: 10px;
     overflow: hidden;
 }
+
+progress::-webkit-progress-bar {
+    background-color: rgba(255, 255, 255, 0.637);
+    border-radius: 10px;
+}
+
+progress::-webkit-progress-value {
+    background: linear-gradient(90deg, #ff4fa4cd, #ffcd4dc4);
+    border-radius: 10px;
+}
