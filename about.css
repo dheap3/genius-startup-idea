@@ -15,3 +15,26 @@ h4 {
     padding-bottom: 16px;
     color: #0b2a3a;
 }
+
+#instructions {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    padding: 24px;
+    gap: 12px;
+}
+
+img[alt="Candy Land Story"] {
+    width: auto;
+    height: 70vh;
+}
+
+img[alt="Candy Land Instructions part 1"] {
+    width: 40vw;
+    height: auto;
+}
+
+img[alt="Candy Land Instructions part 2"] {
+    width: 40vw;
+    height: auto;
+}
