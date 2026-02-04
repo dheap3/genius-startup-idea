@@ -9,34 +9,48 @@ html {
     }
 }
 
-/* img {
-    width: 300px;
+hr {
+    margin: 0;
+    border: none;
+    border-top: 2px solid rgba(0, 0, 0, 0.25);
+}
+
+header {
     display: flex;
-    flex-direction: column;
-} */
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 24px;
+}
+
+header h1 {
+    margin: 0;
+}
 
 img[alt="Candy Land Logo"] {
-    width: 200px;
+    width: 170px;
+    height: auto;
 }
 
-.player-info {
-    font-size: medium;
-    margin-bottom: 10px;
+menu {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 14px;
+    list-style: none;
+    align-items: center;
 }
 
-.play-area {
-    border: 5px solid #000000;
-    border-radius: 15px;
-    display: grid;
-    grid-template-columns: 1fr 3fr;
+menu a {
+    text-decoration: none;
+    color: #0b2a3a;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-#gameboard {
-    width: 200px;
-    height: 150px;
-}
-
-.card {
-    width: 30px;
-    height: 90;
+menu a:hover {
+    background: rgba(255, 255, 255, 0.75);
 }
