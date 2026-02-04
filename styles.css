@@ -28,8 +28,8 @@ header h1 {
 }
 
 img[alt="Candy Land Logo"] {
-    width: 170px;
-    height: auto;
+    width: auto;
+    height: 50px;
 }
 
 menu {
