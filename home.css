@@ -26,6 +26,10 @@ button {
     font-style: normal;
 }
 
+button:hover {
+    background: rgba(255, 255, 255, 0.75);
+}
+
 .input-box {
     width: 250px;
     padding: 10px;
