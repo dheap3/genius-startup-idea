@@ -1,72 +1,72 @@
 html {
-    background-color: #8bd2f9;
-    font-family: "Milonga", serif;
-    font-weight: 400;
-    font-style: normal;
+  background-color: #8bd2f9;
+  font-family: "Milonga", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 hr {
-    margin: 0;
-    border: none;
-    border-top: 2px solid rgba(0, 0, 0, 0.25);
+  margin: 0;
+  border: none;
+  border-top: 2px solid rgba(0, 0, 0, 0.25);
 }
 
 header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 24px;
 }
 
 header h1 {
-    margin: 0;
+  margin: 0;
 }
 
 img[alt="Candy Land Logo"] {
-    width: auto;
-    height: 50px;
+  width: auto;
+  height: 50px;
 }
 
 menu {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 14px;
-    list-style: none;
-    align-items: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 14px;
+  list-style: none;
+  align-items: center;
 }
 
 menu a {
-    text-decoration: none;
-    color: #0b2a3a;
-    font-weight: 600;
-    padding: 10px 14px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.45);
-    border: 1px solid rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+  color: #0b2a3a;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 menu a:hover {
-    background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.75);
 }
 
 footer {
-    padding: 14px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid rgba(0, 0, 0, 0.15);
-    color: #0b2a3a;
-    font-weight: 600;
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  color: #0b2a3a;
+  font-weight: 600;
 }
 
 footer a {
-    color: #0b2a3a;
-    font-weight: 600;
-    text-decoration: none;
+  color: #0b2a3a;
+  font-weight: 600;
+  text-decoration: none;
 }
 
 footer a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }

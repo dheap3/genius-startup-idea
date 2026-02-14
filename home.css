@@ -1,40 +1,40 @@
 #title {
-    text-align: center;
-    color: #0b2a3a;
-    font-weight: 600;
+  text-align: center;
+  color: #0b2a3a;
+  font-weight: 600;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
 }
 
 button {
-    text-decoration: none;
-    color: #0b2a3a;
-    font-weight: 600;
-    padding: 10px 14px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.45);
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    /* same as the menu buttons */
-    margin: 8px;
-    font-size: 16px;
-    font-family: "Milonga", serif;
-    font-style: normal;
+  text-decoration: none;
+  color: #0b2a3a;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  /* same as the menu buttons */
+  margin: 8px;
+  font-size: 16px;
+  font-family: "Milonga", serif;
+  font-style: normal;
 }
 
 button:hover {
-    background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.75);
 }
 
 .input-box {
-    width: 250px;
-    padding: 10px;
-    margin: 8px;
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    border-radius: 8px;
-    font-size: 16px;
+  width: 250px;
+  padding: 10px;
+  margin: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  font-size: 16px;
 }

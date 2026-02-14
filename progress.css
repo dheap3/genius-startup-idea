@@ -1,59 +1,59 @@
 #title {
-    text-align: center;
-    color: #0b2a3a;
-    font-weight: 600;
+  text-align: center;
+  color: #0b2a3a;
+  font-weight: 600;
 }
 
 h4 {
-    text-decoration: none;
-    margin: 0;
+  text-decoration: none;
+  margin: 0;
 }
 
 .progress-board {
-    max-width: 700px;
-    margin: 30px auto;
-    padding: 16px;
-    background: rgba(255, 255, 255, 0.4);
-    border-radius: 16px;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
 .row {
-    display: grid;
-    grid-template-columns: 140px 1fr 70px;
-    align-items: center;
-    gap: 12px;
-    padding: 8px 0;
+  display: grid;
+  grid-template-columns: 140px 1fr 70px;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
 }
 
 #header-row {
-    font-weight: bold;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
-    padding-bottom: 10px;
+  font-weight: bold;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 10px;
 }
 
 .name {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .percent {
-    text-align: center;
-    font-weight: 600;
+  text-align: center;
+  font-weight: 600;
 }
 
 progress {
-    width: 100%;
-    height: 18px;
-    border-radius: 10px;
-    overflow: hidden;
+  width: 100%;
+  height: 18px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 progress::-webkit-progress-bar {
-    background-color: rgba(255, 255, 255, 0.637);
-    border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.637);
+  border-radius: 10px;
 }
 
 progress::-webkit-progress-value {
-    background: linear-gradient(90deg, #ff4fa4cd, #ffcd4dc4);
-    border-radius: 10px;
+  background: linear-gradient(90deg, #ff4fa4cd, #ffcd4dc4);
+  border-radius: 10px;
 }
