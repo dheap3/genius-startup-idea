@@ -31,13 +31,15 @@ export default function App() {
           </menu>
         </header>
         <hr />
-        <Routes>
-          <Route path="/" element={<Login />} exact />
-          <Route path="/play" element={<Play />} />
-          <Route path="/progress" element={<Progress />} />
-          <Route path="/about" element={<About />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<Login />} exact />
+            <Route path="/play" element={<Play />} />
+            <Route path="/progress" element={<Progress />} />
+            <Route path="/about" element={<About />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
         <hr />
         <footer>
           <div>David Heap</div>
