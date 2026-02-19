@@ -3,9 +3,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./app.css";
 import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
 import { Login } from "./login/login";
-// import { Play } from "./play/play";
-// import { Progress } from "./progress/progress";
-// import { About } from "./about/about";
+import { Play } from "./play/play";
+import { Progress } from "./progress/progress";
+import { About } from "./about/about";
 
 export default function App() {
   return (
@@ -17,26 +17,26 @@ export default function App() {
           </h1>
           <menu>
             <li>
-              <NavLink to="login.html">Home</NavLink>
+              <NavLink to=" ">Home</NavLink>
             </li>
             <li>
-              <NavLink to="play.html">Play</NavLink>
+              <NavLink to="play">Play</NavLink>
             </li>
             <li>
-              <NavLink to="progress.html">Progress</NavLink>
+              <NavLink to="progress">Progress</NavLink>
             </li>
             <li>
-              <NavLink to="about.html">About</NavLink>
+              <NavLink to="about">About</NavLink>
             </li>
           </menu>
         </header>
         <hr />
         <Routes>
           <Route path="/" element={<Login />} exact />
-          {/* <Route path="/play" element={<Play />} />
+          <Route path="/play" element={<Play />} />
           <Route path="/progress" element={<Progress />} />
           <Route path="/about" element={<About />} />
-          <Route path="*" element={<NotFound />} /> */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <hr />
         <footer>
