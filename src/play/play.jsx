@@ -3,7 +3,7 @@ import "./play.css";
 
 export function Play() {
   const [card, setCard] = React.useState("images/cards/Card Placeholder.png");
-  const cards = [
+  const [deck, setDeck] = React.useState([
     "public/images/cards/Red 1.png",
     "public/images/cards/Red 2.png",
     "public/images/cards/Purple 1.png",
@@ -22,14 +22,30 @@ export function Play() {
     "public/images/cards/Peanut.png",
     "public/images/cards/Lollipop.png",
     "public/images/cards/IceCream.png",
-  ];
+  ]);
 
   function handleDeckClick() {
     //draw a card from the deck and update the current card display
     console.log("Deck clicked!");
     // For demonstration, we'll just change the card to a random one from the deck
-    const randomCard = cards[Math.floor(Math.random() * cards.length)];
+    const index = Math.floor(Math.random() * deck.length);
+    const randomCard = deck[index];
     setCard(randomCard);
+    //special card check
+    if (
+      randomCard == "public/images/cards/Gingerbread.png" ||
+      randomCard == "public/images/cards/CandyCane.png" ||
+      randomCard == "public/images/cards/Gumdrop.png" ||
+      randomCard == "public/images/cards/Peanut.png" ||
+      randomCard == "public/images/cards/Lollipop.png" ||
+      randomCard == "public/images/cards/IceCream.png"
+    ) {
+      alert("Special card drawn! Move to the corresponding location on the board.");
+      //swap the card with the last card in the array and pop it to remove it from the deck
+      const newDeck = deck;
+      newDeck.splice(index, 1);
+      setDeck(newDeck);
+    }
   }
   function handleCurrentCardClick() {
     //move the players token to the square that matches the color of the card
