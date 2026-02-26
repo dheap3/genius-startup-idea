@@ -98,9 +98,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - I did not complete this part of the deliverable.
+- [x] **Bundled using Vite** - I added vite and used the scripts (npm run dev) to run a live server of my application
+- [x] **Components** - I ocnverted my components pretty easily, but not all my css transfered nicely. I restructured it so that it looks similar
+- [x] **Router** - I routed to each page! The image paths I updated a couple times too until I figured that out.
 
 ## 🚀 React part 2: Reactivity deliverable
 
