@@ -23,6 +23,7 @@ export function Play() {
     "public/images/cards/Lollipop.png",
     "public/images/cards/IceCream.png",
   ]);
+  //I could probably balance the deck better, but that's for later
 
   function handleDeckClick() {
     //draw a card from the deck and update the current card display
