@@ -2,9 +2,34 @@ import React from "react";
 import "./play.css";
 
 export function Play() {
+  const [card, setCard] = React.useState("images/cards/Card Placeholder.png");
+  const cards = [
+    "public/images/cards/Red 1.png",
+    "public/images/cards/Red 2.png",
+    "public/images/cards/Purple 1.png",
+    "public/images/cards/Purple 2.png",
+    "public/images/cards/Yellow 1.png",
+    "public/images/cards/Yellow 2.png",
+    "public/images/cards/Blue 1.png",
+    "public/images/cards/Blue 2.png",
+    "public/images/cards/Orange 1.png",
+    "public/images/cards/Orange 2.png",
+    "public/images/cards/Green 1.png",
+    "public/images/cards/Green 2.png",
+    "public/images/cards/Gingerbread.png",
+    "public/images/cards/CandyCane.png",
+    "public/images/cards/Gumdrop.png",
+    "public/images/cards/Peanut.png",
+    "public/images/cards/Lollipop.png",
+    "public/images/cards/IceCream.png",
+  ];
+
   function handleDeckClick() {
     //draw a card from the deck and update the current card display
     console.log("Deck clicked!");
+    // For demonstration, we'll just change the card to a random one from the deck
+    const randomCard = cards[Math.floor(Math.random() * cards.length)];
+    setCard(randomCard);
   }
   function handleCurrentCardClick() {
     //move the players token to the square that matches the color of the card
@@ -41,12 +66,7 @@ export function Play() {
             <img className="card" src="images/cards/Card Back.png" alt="Back of Card Deck" onClick={handleDeckClick} />
           </div>
           <div className="deck">
-            <img
-              className="card"
-              src="images/cards/Card Placeholder.png"
-              alt="Card Placeholder"
-              onClick={handleCurrentCardClick}
-            />
+            <img className="card" src={card} alt="Card Placeholder" onClick={handleCurrentCardClick} />
             Current Card
           </div>
         </div>
