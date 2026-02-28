@@ -40,7 +40,6 @@ export function Play() {
 
   function handleDeckClick() {
     //draw a card from the deck and update the current card display
-    console.log("Deck clicked!");
     // For demonstration, we'll just change the card to a random one from the deck
     const index = Math.floor(Math.random() * deck.length);
     const randomCard = deck[index];
@@ -69,7 +68,7 @@ export function Play() {
     let cardColor = card.split("/").pop().split(" ")[0];
     let numSpaces = card.split("/").pop().split(" ")[1].split(".")[0];
 
-    console.log(`Current player: ${currentPlayer.name}, Card color: ${cardColor}`);
+    // console.log(`Current player: ${currentPlayer.name}, Card color: ${cardColor}`);
     if (cardColor != "Card") {
       for (let i = 0; i < numSpaces; i++) {
         movePlayerToSquare(currentPlayer.name, cardColor);
@@ -120,19 +119,19 @@ export function Play() {
     //now we know where we are, we need to find the next square of the color we want
     for (let i = currentSquareIndex + 1; i < squares.length; i++) {
       if (squares[i].color === cardColor) {
-        return (squares[i], i);
+        // console.log([squares[i], i]);
+        return [squares[i], i];
       }
     }
   }
 
   function movePlayerToSquare(playerName, color) {
     //move the player's token to the specified square
-    console.log(`Moving player ${playerName} to square: ${color}`);
+    // console.log(`Moving player ${playerName} to square: ${color}`);
     players.forEach((player) => {
       if (player.name === playerName) {
-        let newSquare,
-          newSquareIndex = getNextSquare(player.square, color);
-        console.log(`New square for player ${playerName}:`, newSquare);
+        let [newSquare, newSquareIndex] = getNextSquare(player.square, color, player.position);
+        // console.log(`New square for player ${playerName}:`, newSquare);
         player.updatePosition(newSquareIndex, newSquare);
         //because we don't want to update a react state variable, we are creating a new player and replacing the old one
         let updatedPlayers = players.map((p) => {
@@ -150,7 +149,7 @@ export function Play() {
 
   function nextPlayer() {
     //advance to the next player's turn
-    console.log("Next player's turn!");
+    // console.log("Next player's turn!");
     setCurrentPlayerIndex((currentPlayerIndex + 1) % players.length);
   }
 

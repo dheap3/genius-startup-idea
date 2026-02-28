@@ -10,6 +10,10 @@ export class Square {
   getCoords() {
     return this.coords;
   }
+
+  __str__() {
+    return `Square(color: ${this.color}, coords: ${this.coords}, isLicorice: ${this.isLicorice}, isShortcut: ${this.isShortcut})`;
+  }
 }
 
 export class Player {
