@@ -170,6 +170,7 @@ export class Board {
       { normalizedX: 0.3584, normalizedY: 0.17323 },
       { normalizedX: 0.39204, normalizedY: 0.18869 },
     ];
+    //the coordinates are off because they change depending on the size of the screen. Still need to debug
     let colors = ["Red", "Purple", "Yellow", "Blue", "Orange", "Green"];
     let colorItr = 0;
     for (let i = 0; i < 133; i++) {
