@@ -34,6 +34,7 @@ export function Play() {
     new Player("Cousin Bob", "/images/candy land piece.png"),
     new Player("Grandpa Joe", "/images/candy land piece.png"),
   ]);
+  const [currentPlayerIndex, setCurrentPlayerIndex] = React.useState(0);
   //I could probably balance the deck better, but that's for later
   const board = new Board();
 
@@ -83,13 +84,11 @@ export function Play() {
     return { normalizedX, normalizedY };
   }
 
+  //don't do anything yet, we'll just map out clicking on the card and the pieces moving for now
   function handleBoardClick(event) {
     const coords = getNormalizedClick(event, event.currentTarget);
     //move the players token to the square clicked (if correct color), alert if not
     console.log("Board clicked!");
-    movePlayerToSquare("Uncle Mike", "Red");
-
-    nextPlayer();
   }
 
   function getNextSquare(currentSquare, cardColor, currentIndex = -1) {
@@ -132,6 +131,7 @@ export function Play() {
   function nextPlayer() {
     //advance to the next player's turn
     console.log("Next player's turn!");
+    setCurrentPlayerIndex((currentPlayerIndex + 1) % players.length);
   }
 
   return (
