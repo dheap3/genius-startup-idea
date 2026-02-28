@@ -1,5 +1,8 @@
 import React from "react";
 import "./play.css";
+import { Square } from "./Board";
+import { Board } from "./Board";
+import { Player } from "./Board";
 
 export function Play() {
   const [card, setCard] = React.useState("images/cards/Card Placeholder.png");
@@ -23,7 +26,16 @@ export function Play() {
     "public/images/cards/Lollipop.png",
     "public/images/cards/IceCream.png",
   ]);
+  //used when getting all the values of the boord squares coords
+  //const [boardSquares, setBoardSquares] = React.useState([]);
+  const [players, setPlayers] = React.useState([
+    new Player("Uncle Mike", "images/tokens/Red Token.png"),
+    new Player("Aunt Sally", "images/tokens/Purple Token.png"),
+    new Player("Cousin Bob", "images/tokens/Yellow Token.png"),
+    new Player("Grandpa Joe", "images/tokens/Blue Token.png"),
+  ]);
   //I could probably balance the deck better, but that's for later
+  const board = new Board();
 
   function handleDeckClick() {
     //draw a card from the deck and update the current card display
@@ -41,29 +53,81 @@ export function Play() {
       randomCard == "public/images/cards/Lollipop.png" ||
       randomCard == "public/images/cards/IceCream.png"
     ) {
-      alert("Special card drawn! Move to the corresponding location on the board.");
+      // alert("Special card drawn! Move to the corresponding location on the board.");
       //swap the card with the last card in the array and pop it to remove it from the deck
-      const newDeck = deck;
+      const newDeck = [...deck];
       newDeck.splice(index, 1);
       setDeck(newDeck);
     }
   }
+
   function handleCurrentCardClick() {
     //move the players token to the square that matches the color of the card
     console.log("Current card clicked!");
-    moveTokenToSquare("Red Square");
+    movePlayerToSquare("Uncle Mike", "Red");
     nextPlayer();
   }
-  function handleBoardClick() {
+
+  function getNormalizedClick(mouseEvent, element) {
+    const bounds = element.getBoundingClientRect();
+
+    const clickX = mouseEvent.clientX - bounds.left;
+    const clickY = mouseEvent.clientY - bounds.top;
+
+    const normalizedX = clickX / bounds.width;
+    const normalizedY = clickY / bounds.height;
+
+    //used to get an array (formatted with ai) of the coordinates of the squares on the board
+    // setBoardSquares([...boardSquares, { normalizedX, normalizedY }]);
+    // localStorage.setItem("boardSquares", JSON.stringify([...boardSquares, { normalizedX, normalizedY }]));
+    return { normalizedX, normalizedY };
+  }
+
+  function handleBoardClick(event) {
+    const coords = getNormalizedClick(event, event.currentTarget);
     //move the players token to the square clicked (if correct color), alert if not
     console.log("Board clicked!");
-    moveTokenToSquare("Red Square");
+    movePlayerToSquare("Uncle Mike", "Red");
+
     nextPlayer();
   }
-  function moveTokenToSquare(square) {
-    //move the player's token to the specified square
-    console.log(`Moving token to square: ${square}`);
+
+  function getNextSquare(currentSquare, cardColor, currentIndex = -1) {
+    //get the next square of the specified color after the current square
+    let currentSquareIndex = currentIndex;
+    const squares = board.getSquares();
+    if (currentSquare == null) {
+      currentSquareIndex = -1; //if the player is not on the board, start at the beginning
+    } else if (currentIndex < 0) {
+      //if the index wasn't given, find it
+      for (let i = 0; i < squares.length; i++) {
+        if (squares[i].coords === currentSquare.getCoords()) {
+          currentSquareIndex = i;
+          break;
+        }
+      }
+    }
+    //now we know where we are, we need to find the next square of the color we want
+    for (let i = currentSquareIndex + 1; i < squares.length; i++) {
+      if (squares[i].color === cardColor) {
+        return (squares[i], i);
+      }
+    }
   }
+
+  function movePlayerToSquare(playerName, color) {
+    //move the player's token to the specified square
+    console.log(`Moving player ${playerName} to square: ${color}`);
+    players.forEach((player) => {
+      if (player.name === playerName) {
+        let newSquare,
+          newSquareIndex = getNextSquare(player.square, color);
+        console.log(`New square for player ${playerName}:`, newSquare);
+        player.updatePosition(newSquareIndex, newSquare);
+      }
+    });
+  }
+
   function nextPlayer() {
     //advance to the next player's turn
     console.log("Next player's turn!");
