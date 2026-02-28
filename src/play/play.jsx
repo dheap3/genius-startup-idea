@@ -134,7 +134,16 @@ export function Play() {
           newSquareIndex = getNextSquare(player.square, color);
         console.log(`New square for player ${playerName}:`, newSquare);
         player.updatePosition(newSquareIndex, newSquare);
-        setPlayers([...players]); //rerender the players
+        //because we don't want to update a react state variable, we are creating a new player and replacing the old one
+        let updatedPlayers = players.map((p) => {
+          if (p.name === playerName) {
+            return player;
+          }
+          return p;
+        });
+        localStorage.setItem("players", JSON.stringify(updatedPlayers));
+        setPlayers(updatedPlayers);
+        // setPlayers([...players]); //rerender the players
       }
     });
   }
