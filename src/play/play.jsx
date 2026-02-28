@@ -29,10 +29,10 @@ export function Play() {
   //used when getting all the values of the boord squares coords
   //const [boardSquares, setBoardSquares] = React.useState([]);
   const [players, setPlayers] = React.useState([
-    new Player("Uncle Mike", "images/tokens/Red Token.png"),
-    new Player("Aunt Sally", "images/tokens/Purple Token.png"),
-    new Player("Cousin Bob", "images/tokens/Yellow Token.png"),
-    new Player("Grandpa Joe", "images/tokens/Blue Token.png"),
+    new Player("Uncle Mike", "/images/candy land piece.png"),
+    new Player("Aunt Sally", "/images/candy land piece.png"),
+    new Player("Cousin Bob", "/images/candy land piece.png"),
+    new Player("Grandpa Joe", "/images/candy land piece.png"),
   ]);
   //I could probably balance the deck better, but that's for later
   const board = new Board();
@@ -142,6 +142,23 @@ export function Play() {
       </div>
       <div id="play-area">
         <img id="gameboard" src="images/Classic-Board-2004.png" alt="Candy Land Board" onClick={handleBoardClick} />
+        {players.map((player) => {
+          if (player.position < 0) player.updatePosition(1, board.getSquare(1));
+
+          const square = board.getSquare(player.position);
+          const { normalizedX, normalizedY } = square.getCoords();
+
+          return (
+            <img
+              src={player.token}
+              className="player-token"
+              style={{
+                left: `${normalizedX * 100}%`,
+                top: `${normalizedY * 100}%`,
+              }}
+            />
+          );
+        })}
         <div id="card-area">
           <div className="deck">
             Card Deck
