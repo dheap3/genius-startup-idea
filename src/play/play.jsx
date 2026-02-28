@@ -64,9 +64,20 @@ export function Play() {
 
   function handleCurrentCardClick() {
     //move the players token to the square that matches the color of the card
-    console.log("Current card clicked!");
-    movePlayerToSquare("Uncle Mike", "Red");
-    nextPlayer();
+    let currentPlayer = players[currentPlayerIndex];
+    //get the color and number of spaces from the card filename
+    let cardColor = card.split("/").pop().split(" ")[0];
+    let numSpaces = card.split("/").pop().split(" ")[1].split(".")[0];
+
+    console.log(`Current player: ${currentPlayer.name}, Card color: ${cardColor}`);
+    if (cardColor != "Card") {
+      for (let i = 0; i < numSpaces; i++) {
+        movePlayerToSquare(currentPlayer.name, cardColor);
+      }
+      nextPlayer();
+    } else {
+      alert("Please draw a card from the deck to play your turn.");
+    }
   }
 
   function getNormalizedClick(mouseEvent, element) {
