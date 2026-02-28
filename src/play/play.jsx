@@ -124,6 +124,7 @@ export function Play() {
           newSquareIndex = getNextSquare(player.square, color);
         console.log(`New square for player ${playerName}:`, newSquare);
         player.updatePosition(newSquareIndex, newSquare);
+        setPlayers([...players]); //rerender the players
       }
     });
   }
