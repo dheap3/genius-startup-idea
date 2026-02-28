@@ -170,6 +170,7 @@ export function Play() {
 
           return (
             <img
+              key={player.name}
               src={player.token}
               className="player-token"
               style={{
