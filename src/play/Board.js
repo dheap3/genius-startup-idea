@@ -47,6 +47,7 @@ export class Board {
       { normalizedX: 0.33207, normalizedY: 0.80718 },
       { normalizedX: 0.36717, normalizedY: 0.78979 },
       { normalizedX: 0.40667, normalizedY: 0.78205 },
+      { normalizedX: 0.40691, normalizedY: 0.77641 },
       { normalizedX: 0.43885, normalizedY: 0.78979 },
       { normalizedX: 0.4842, normalizedY: 0.80331 },
       { normalizedX: 0.51346, normalizedY: 0.84004 },
