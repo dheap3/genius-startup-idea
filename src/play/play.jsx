@@ -74,16 +74,22 @@ export function Play() {
     console.log(cardColor);
     if (cardColor == "Gingerbread.png") {
       movePlayerToSquare(currentPlayer.name, cardColor);
+      nextPlayer();
     } else if (cardColor == "CandyCane.png") {
       movePlayerToSquare(currentPlayer.name, cardColor);
+      nextPlayer();
     } else if (cardColor == "Gumdrop.png") {
       movePlayerToSquare(currentPlayer.name, cardColor);
+      nextPlayer();
     } else if (cardColor == "Peanut.png") {
       movePlayerToSquare(currentPlayer.name, cardColor);
+      nextPlayer();
     } else if (cardColor == "Lollipop.png") {
       movePlayerToSquare(currentPlayer.name, cardColor);
+      nextPlayer();
     } else if (cardColor == "IceCream.png") {
       movePlayerToSquare(currentPlayer.name, cardColor);
+      nextPlayer();
     } else if (cardColor != "Card") {
       //this is the default card before anything has been drawn
       let numSpaces = card.split("/").pop().split(" ")[1].split(".")[0];
