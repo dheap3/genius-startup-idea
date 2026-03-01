@@ -7,24 +7,24 @@ import { Player } from "./Board";
 export function Play() {
   const [card, setCard] = React.useState("images/cards/Card Placeholder.png");
   const [deck, setDeck] = React.useState([
-    "public/images/cards/Red 1.png",
-    "public/images/cards/Red 2.png",
-    "public/images/cards/Purple 1.png",
-    "public/images/cards/Purple 2.png",
-    "public/images/cards/Yellow 1.png",
-    "public/images/cards/Yellow 2.png",
-    "public/images/cards/Blue 1.png",
-    "public/images/cards/Blue 2.png",
-    "public/images/cards/Orange 1.png",
-    "public/images/cards/Orange 2.png",
-    "public/images/cards/Green 1.png",
-    "public/images/cards/Green 2.png",
-    "public/images/cards/Gingerbread.png",
-    "public/images/cards/CandyCane.png",
-    "public/images/cards/Gumdrop.png",
-    "public/images/cards/Peanut.png",
-    "public/images/cards/Lollipop.png",
-    "public/images/cards/IceCream.png",
+    "images/cards/Red 1.png",
+    "images/cards/Red 2.png",
+    "images/cards/Purple 1.png",
+    "images/cards/Purple 2.png",
+    "images/cards/Yellow 1.png",
+    "images/cards/Yellow 2.png",
+    "images/cards/Blue 1.png",
+    "images/cards/Blue 2.png",
+    "images/cards/Orange 1.png",
+    "images/cards/Orange 2.png",
+    "images/cards/Green 1.png",
+    "images/cards/Green 2.png",
+    "images/cards/Gingerbread.png",
+    "images/cards/CandyCane.png",
+    "images/cards/Gumdrop.png",
+    "images/cards/Peanut.png",
+    "images/cards/Lollipop.png",
+    "images/cards/IceCream.png",
   ]);
   //used when getting all the values of the boord squares coords
   const [boardSquares, setBoardSquares] = React.useState([]);
@@ -47,12 +47,12 @@ export function Play() {
     setCard(randomCard);
     //special card check
     if (
-      randomCard == "public/images/cards/Gingerbread.png" ||
-      randomCard == "public/images/cards/CandyCane.png" ||
-      randomCard == "public/images/cards/Gumdrop.png" ||
-      randomCard == "public/images/cards/Peanut.png" ||
-      randomCard == "public/images/cards/Lollipop.png" ||
-      randomCard == "public/images/cards/IceCream.png"
+      randomCard == "images/cards/Gingerbread.png" ||
+      randomCard == "images/cards/CandyCane.png" ||
+      randomCard == "images/cards/Gumdrop.png" ||
+      randomCard == "images/cards/Peanut.png" ||
+      randomCard == "images/cards/Lollipop.png" ||
+      randomCard == "images/cards/IceCream.png"
     ) {
       // alert("Special card drawn! Move to the corresponding location on the board.");
       //swap the card with the last card in the array and pop it to remove it from the deck
