@@ -72,22 +72,14 @@ export function Play() {
     let cardColor = card.split("/").pop().split(" ")[0];
     //get the color and number of spaces from the card filename (num spaces done below just in case it's a special card)
     console.log(cardColor);
-    if (cardColor == "Gingerbread.png") {
-      movePlayerToSquare(currentPlayer.name, cardColor);
-      nextPlayer();
-    } else if (cardColor == "CandyCane.png") {
-      movePlayerToSquare(currentPlayer.name, cardColor);
-      nextPlayer();
-    } else if (cardColor == "Gumdrop.png") {
-      movePlayerToSquare(currentPlayer.name, cardColor);
-      nextPlayer();
-    } else if (cardColor == "Peanut.png") {
-      movePlayerToSquare(currentPlayer.name, cardColor);
-      nextPlayer();
-    } else if (cardColor == "Lollipop.png") {
-      movePlayerToSquare(currentPlayer.name, cardColor);
-      nextPlayer();
-    } else if (cardColor == "IceCream.png") {
+    if (
+      cardColor == "Gingerbread.png" ||
+      cardColor == "CandyCane.png" ||
+      cardColor == "Gumdrop.png" ||
+      cardColor == "Peanut.png" ||
+      cardColor == "Lollipop.png" ||
+      cardColor == "IceCream.png"
+    ) {
       movePlayerToSquare(currentPlayer.name, cardColor);
       nextPlayer();
     } else if (cardColor != "Card") {
