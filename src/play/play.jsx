@@ -70,12 +70,23 @@ export function Play() {
     //move the players token to the square that matches the color of the card
     let currentPlayer = players[currentPlayerIndex];
     let cardColor = card.split("/").pop().split(" ")[0];
-    let numSpaces = card.split("/").pop().split(" ")[1].split(".")[0];
-    //get the color and number of spaces from the card filename
-
-    console.log("Current card clicked!");
-
-    if (cardColor != "Card") {
+    //get the color and number of spaces from the card filename (num spaces done below just in case it's a special card)
+    console.log(cardColor);
+    if (cardColor == "Gingerbread.png") {
+      movePlayerToSquare(currentPlayer.name, cardColor);
+    } else if (cardColor == "CandyCane.png") {
+      movePlayerToSquare(currentPlayer.name, cardColor);
+    } else if (cardColor == "Gumdrop.png") {
+      movePlayerToSquare(currentPlayer.name, cardColor);
+    } else if (cardColor == "Peanut.png") {
+      movePlayerToSquare(currentPlayer.name, cardColor);
+    } else if (cardColor == "Lollipop.png") {
+      movePlayerToSquare(currentPlayer.name, cardColor);
+    } else if (cardColor == "IceCream.png") {
+      movePlayerToSquare(currentPlayer.name, cardColor);
+    } else if (cardColor != "Card") {
+      //this is the default card before anything has been drawn
+      let numSpaces = card.split("/").pop().split(" ")[1].split(".")[0];
       for (let i = 0; i < numSpaces; i++) {
         movePlayerToSquare(currentPlayer.name, cardColor);
         await delay(500);
@@ -110,6 +121,20 @@ export function Play() {
 
   function getNextSquare(currentSquare, cardColor, currentIndex = -1) {
     //get the next square of the specified color after the current square
+    //first check for special cards
+    if (cardColor == "Gingerbread.png") {
+      return [board.getSquare(8), 8];
+    } else if (cardColor == "CandyCane.png") {
+      return [board.getSquare(19), 19];
+    } else if (cardColor == "Gumdrop.png") {
+      return [board.getSquare(41), 41];
+    } else if (cardColor == "Peanut.png") {
+      return [board.getSquare(68), 68];
+    } else if (cardColor == "Lollipop.png") {
+      return [board.getSquare(91), 91];
+    } else if (cardColor == "IceCream.png") {
+      return [board.getSquare(101), 101];
+    }
     let currentSquareIndex = currentIndex;
     const squares = board.getSquares();
     // return [squares[currentSquareIndex + 1], currentSquareIndex + 1];
