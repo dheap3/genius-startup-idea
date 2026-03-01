@@ -27,7 +27,7 @@ export function Play() {
     "public/images/cards/IceCream.png",
   ]);
   //used when getting all the values of the boord squares coords
-  //const [boardSquares, setBoardSquares] = React.useState([]);
+  const [boardSquares, setBoardSquares] = React.useState([]);
   const [players, setPlayers] = React.useState([
     new Player("Uncle Mike", "/images/candy land piece.png"),
     new Player("Aunt Sally", "/images/candy land piece.png"),
@@ -40,6 +40,7 @@ export function Play() {
 
   function handleDeckClick() {
     //draw a card from the deck and update the current card display
+    console.log("Deck clicked!");
     // For demonstration, we'll just change the card to a random one from the deck
     const index = Math.floor(Math.random() * deck.length);
     const randomCard = deck[index];
@@ -61,17 +62,23 @@ export function Play() {
     }
   }
 
-  function handleCurrentCardClick() {
+  function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  async function handleCurrentCardClick() {
     //move the players token to the square that matches the color of the card
     let currentPlayer = players[currentPlayerIndex];
-    //get the color and number of spaces from the card filename
     let cardColor = card.split("/").pop().split(" ")[0];
     let numSpaces = card.split("/").pop().split(" ")[1].split(".")[0];
+    //get the color and number of spaces from the card filename
 
-    // console.log(`Current player: ${currentPlayer.name}, Card color: ${cardColor}`);
+    console.log("Current card clicked!");
+
     if (cardColor != "Card") {
       for (let i = 0; i < numSpaces; i++) {
         movePlayerToSquare(currentPlayer.name, cardColor);
+        await delay(500);
       }
       nextPlayer();
     } else {
@@ -89,8 +96,8 @@ export function Play() {
     const normalizedY = clickY / bounds.height;
 
     //used to get an array (formatted with ai) of the coordinates of the squares on the board
-    // setBoardSquares([...boardSquares, { normalizedX, normalizedY }]);
-    // localStorage.setItem("boardSquares", JSON.stringify([...boardSquares, { normalizedX, normalizedY }]));
+    setBoardSquares([...boardSquares, { normalizedX, normalizedY }]);
+    localStorage.setItem("boardSquares", JSON.stringify([...boardSquares, { normalizedX, normalizedY }]));
     return { normalizedX, normalizedY };
   }
 
@@ -105,6 +112,7 @@ export function Play() {
     //get the next square of the specified color after the current square
     let currentSquareIndex = currentIndex;
     const squares = board.getSquares();
+    // return [squares[currentSquareIndex + 1], currentSquareIndex + 1];
     if (currentSquare == null) {
       currentSquareIndex = -1; //if the player is not on the board, start at the beginning
     } else if (currentIndex < 0) {
@@ -160,25 +168,32 @@ export function Play() {
         <span>Uncle Mike</span>
       </div>
       <div id="play-area">
-        <img id="gameboard" src="images/Classic-Board-2004.png" alt="Candy Land Board" onClick={handleBoardClick} />
-        {players.map((player) => {
-          if (player.position < 0) player.updatePosition(1, board.getSquare(1));
+        <div className="board">
+          <img id="gameboard" src="images/Classic-Board-2004.png" alt="Candy Land Board" onClick={handleBoardClick} />
+          {players.map((player) => {
+            let square, normalizedX, normalizedY;
 
-          const square = board.getSquare(player.position);
-          const { normalizedX, normalizedY } = square.getCoords();
+            if (player.position < 0) {
+              let randomIndex = 1; //Math.floor(Math.random() * 4) + 1;
+              ({ normalizedX, normalizedY } = board.getBoardCoords()[board.getBoardCoords().length - randomIndex]);
+            } else {
+              square = board.getSquare(player.position);
+              ({ normalizedX, normalizedY } = square.getCoords());
+            }
 
-          return (
-            <img
-              key={player.name}
-              src={player.token}
-              className="player-token"
-              style={{
-                left: `${normalizedX * 100}%`,
-                top: `${normalizedY * 100}%`,
-              }}
-            />
-          );
-        })}
+            return (
+              <img
+                key={player.name}
+                src={player.token}
+                className="player-token"
+                style={{
+                  left: `${normalizedX * 100}%`,
+                  top: `${normalizedY * 100}%`,
+                }}
+              />
+            );
+          })}
+        </div>
         <div id="card-area">
           <div className="deck">
             Card Deck

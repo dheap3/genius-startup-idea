@@ -66,6 +66,8 @@ main {
 
 .board {
   position: relative;
+  width: min(900px, 100%);
+  height: auto;
 }
 
 .player-token {

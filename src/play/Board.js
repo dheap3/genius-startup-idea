@@ -173,6 +173,10 @@ export class Board {
       { normalizedX: 0.31597, normalizedY: 0.1365 },
       { normalizedX: 0.3584, normalizedY: 0.17323 },
       { normalizedX: 0.39204, normalizedY: 0.18869 },
+      { normalizedX: 0.05163, normalizedY: 0.94302 },
+      { normalizedX: 0.05045, normalizedY: 0.83819 },
+      { normalizedX: 0.11795, normalizedY: 0.85071 },
+      { normalizedX: 0.12743, normalizedY: 0.93989 },
     ];
     //the coordinates are off because they change depending on the size of the screen. Still need to debug
     let colors = ["Red", "Purple", "Yellow", "Blue", "Orange", "Green"];
@@ -210,6 +214,9 @@ export class Board {
         colorItr = (colorItr + 1) % colors.length;
       }
     }
+    for (let i = 0; i < 4; i++) {
+      this.squares.push(new Square(`Start${i + 1}`, boardCoords[133 + i + 1]));
+    }
   }
 
   addSquare(square) {
@@ -222,5 +229,9 @@ export class Board {
 
   getSquare(index) {
     return this.squares[index];
+  }
+
+  getBoardCoords() {
+    return this.squares.map((square) => square.getCoords());
   }
 }
