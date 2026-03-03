@@ -2,6 +2,11 @@ import React from "react";
 import "./progress.css";
 
 export function Progress() {
+  const [playerPositions, setPlayerPositions] = React.useState(JSON.parse(localStorage.getItem("playerPositions")) || {});
+  let playerArray = [];
+  for (const player in playerPositions) {
+    playerArray.push({ name: player, position: playerPositions[player] });
+  }
   return (
     <main>
       <h1 id="title">Progress</h1>
@@ -11,26 +16,21 @@ export function Progress() {
           <span>Progress Bar</span>
           <span>Percent</span>
         </div>
-        <div className="row">
-          <span className="name">Alice</span>
-          <progress value="70" max="100"></progress>
-          <span className="percent">70%</span>
-        </div>
-        <div className="row">
-          <span className="name">Jerry</span>
-          <progress value="30" max="100"></progress>
-          <span className="percent">30%</span>
-        </div>
-        <div className="row">
-          <span className="name">Uncle Mike</span>
-          <progress value="55" max="100"></progress>
-          <span className="percent">55%</span>
-        </div>
-        <div className="row">
-          <span className="name">Susan</span>
-          <progress value="88" max="100"></progress>
-          <span className="percent">88%</span>
-        </div>
+        {playerArray.map((player) => {
+          let percent = 0;
+          if (player.position > 134) {
+            percent = 100;
+          } else {
+            percent = (player.position / 134) * 100;
+          }
+          return (
+            <div className="row">
+              <span className="name">{player.name}</span>
+              <progress value={player.position} max="100"></progress>
+              <span className="percent">{player.position}%</span>
+            </div>
+          );
+        })}
       </div>
     </main>
   );
