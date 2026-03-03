@@ -30,9 +30,9 @@ export function Play() {
   const [boardSquares, setBoardSquares] = React.useState([]);
   const [players, setPlayers] = React.useState([
     new Player("Uncle Mike", "/images/candy land piece.png"),
-    new Player("Aunt Sally", "/images/candy land piece.png"),
-    new Player("Cousin Bob", "/images/candy land piece.png"),
-    new Player("Grandpa Joe", "/images/candy land piece.png"),
+    // new Player("Aunt Sally", "/images/candy land piece.png"),
+    // new Player("Cousin Bob", "/images/candy land piece.png"),
+    // new Player("Grandpa Joe", "/images/candy land piece.png"),
   ]);
   const [currentPlayerIndex, setCurrentPlayerIndex] = React.useState(0);
   //I could probably balance the deck better, but that's for later
@@ -154,6 +154,9 @@ export function Play() {
         return [squares[i], i];
       }
     }
+    //we reach here if we don't have a square of that color (and it's not a special card) (you won!)
+    alert(`Congratulations! You won the game!`);
+    return [new Square("End", { normalizedX: 0.5632401434080371, normalizedY: 0.2619359557665548 }), 999];
   }
 
   function movePlayerToSquare(playerName, color) {
@@ -162,7 +165,7 @@ export function Play() {
     players.forEach((player) => {
       if (player.name === playerName) {
         let [newSquare, newSquareIndex] = getNextSquare(player.square, color, player.position);
-        // console.log(`New square for player ${playerName}:`, newSquare);
+        // console.log(`New square for player ${playerName}:`, newSquare.getColor());
         player.updatePosition(newSquareIndex, newSquare);
         //because we don't want to update a react state variable, we are creating a new player and replacing the old one
         let updatedPlayers = players.map((p) => {
@@ -199,6 +202,8 @@ export function Play() {
             if (player.position < 0) {
               let randomIndex = 1; //Math.floor(Math.random() * 4) + 1;
               ({ normalizedX, normalizedY } = board.getBoardCoords()[board.getBoardCoords().length - randomIndex]);
+            } else if (player.position >= 134) {
+              ({ normalizedX, normalizedY } = { normalizedX: 0.5632401434080371, normalizedY: 0.2619359557665548 });
             } else {
               square = board.getSquare(player.position);
               ({ normalizedX, normalizedY } = square.getCoords());

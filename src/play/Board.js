@@ -11,6 +11,10 @@ export class Square {
     return this.coords;
   }
 
+  getColor() {
+    return this.color;
+  }
+
   __str__() {
     return `Square(color: ${this.color}, coords: ${this.coords}, isLicorice: ${this.isLicorice}, isShortcut: ${this.isShortcut})`;
   }
@@ -45,7 +49,7 @@ export class Board {
       { normalizedX: 0.28233, normalizedY: 0.88256 },
       { normalizedX: 0.30427, normalizedY: 0.83424 },
       { normalizedX: 0.33207, normalizedY: 0.80718 },
-      { normalizedX: 0.332306943074093, normalizedY: 0.8025113625402428 },
+      // { normalizedX: 0.332306943074093, normalizedY: 0.8025113625402428 },
       { normalizedX: 0.36717, normalizedY: 0.78979 },
       { normalizedX: 0.40667, normalizedY: 0.78205 }, //{normalizedX: 0.4069161308742903, normalizedY: 0.7764194699359458},
       { normalizedX: 0.43885, normalizedY: 0.78979 },
@@ -186,6 +190,7 @@ export class Board {
       //square (1 based) 5,9,20,35,42,46,69,86,92,102,117
       if (i == 4) {
         this.squares.push(new Square(colors[colorItr], boardCoords[i], false, 58));
+        colorItr = (colorItr + 1) % colors.length;
       } else if (i == 8) {
         this.squares.push(new Square("Gingerbread", boardCoords[i]));
       } else if (i == 19) {
