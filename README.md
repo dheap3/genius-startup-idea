@@ -106,8 +106,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - Candy Land works! Go play with your friends. pieces move, login works, progress updates, and there's a candy of the day on the about page.
+- [x] **Hooks** - Usestate is used prominently to update different variables and useeffect will render all current players on the page!
 
 ## 🚀 Service deliverable
 
