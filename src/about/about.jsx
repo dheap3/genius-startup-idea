@@ -2,12 +2,19 @@ import React from "react";
 import "./about.css";
 
 export function About() {
+  function getRandomCandy() {
+    //get candy
+    let candy = { name: "Lollipop", image: "/images/candy-cane.png" };
+    //parse candy
+    let displayed = candy.name;
+    return displayed;
+  }
   return (
     <main>
       <h1 id="title">About Candy Land</h1>
       <div id="CANDY">
         <h4>Candy of the day:</h4>
-        <span>API for random candy here</span>
+        <span>{getRandomCandy()}</span>
       </div>
       <div id="instructions">
         <img src="images/Candy-Land-Story.png" alt="Candy Land Story" />
