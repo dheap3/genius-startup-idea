@@ -28,15 +28,23 @@ export function Play() {
   ]);
   //used when getting all the values of the boord squares coords
   const [boardSquares, setBoardSquares] = React.useState([]);
-  const [players, setPlayers] = React.useState([
-    new Player("Uncle Mike", "/images/candy land piece.png"),
-    // new Player("Aunt Sally", "/images/candy land piece.png"),
-    // new Player("Cousin Bob", "/images/candy land piece.png"),
-    // new Player("Grandpa Joe", "/images/candy land piece.png"),
-  ]);
+
+  //one player for each user that has an account
+  const [players, setPlayers] = React.useState([]);
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  for (let i = 0; i < users.length; i++) {
+    let newPlayer = new Player(users[i], "/images/candy land piece.png");
+    if (!players.some((player) => player.name === newPlayer.name)) {
+      players.push(newPlayer);
+    }
+  }
+  //new Player("Uncle Mike", "/images/candy land piece.png")
+
   const [currentPlayerIndex, setCurrentPlayerIndex] = React.useState(0);
   //I could probably balance the deck better, but that's for later
   const board = new Board();
+
+  const [playerPositions, setPlayerPositions] = React.useState(JSON.parse(localStorage.getItem("playerPositions")) || {});
 
   function handleDeckClick() {
     //draw a card from the deck and update the current card display
@@ -159,6 +167,11 @@ export function Play() {
     return [new Square("End", { normalizedX: 0.5632401434080371, normalizedY: 0.2619359557665548 }), 999];
   }
 
+  function updateProgress(player) {
+    setPlayerPositions({ ...playerPositions, [player.name]: player.position });
+    localStorage.setItem("playerPositions", JSON.stringify({ ...playerPositions, [player.name]: player.position }));
+  }
+
   function movePlayerToSquare(playerName, color) {
     //move the player's token to the specified square
     // console.log(`Moving player ${playerName} to square: ${color}`);
@@ -167,6 +180,7 @@ export function Play() {
         let [newSquare, newSquareIndex] = getNextSquare(player.square, color, player.position);
         // console.log(`New square for player ${playerName}:`, newSquare.getColor());
         player.updatePosition(newSquareIndex, newSquare);
+        updateProgress(player);
         //because we don't want to update a react state variable, we are creating a new player and replacing the old one
         let updatedPlayers = players.map((p) => {
           if (p.name === playerName) {
