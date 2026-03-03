@@ -5,6 +5,7 @@ import { Board } from "./Board";
 import { Player } from "./Board";
 
 export function Play() {
+  const [board, setBoard] = React.useState(() => new Board(), []);
   const [card, setCard] = React.useState("images/cards/Card Placeholder.png");
   const [deck, setDeck] = React.useState([
     "images/cards/Red 1.png",
@@ -31,20 +32,34 @@ export function Play() {
 
   //one player for each user that has an account
   const [players, setPlayers] = React.useState([]);
-  const users = JSON.parse(localStorage.getItem("users")) || [];
-  for (let i = 0; i < users.length; i++) {
-    let newPlayer = new Player(users[i], "/images/candy land piece.png");
-    if (!players.some((player) => player.name === newPlayer.name)) {
-      players.push(newPlayer);
-    }
-  }
+  const [users, setUsers] = React.useState(JSON.parse(localStorage.getItem("users")) || []);
   //new Player("Uncle Mike", "/images/candy land piece.png")
 
   const [currentPlayerIndex, setCurrentPlayerIndex] = React.useState(0);
   //I could probably balance the deck better, but that's for later
-  const board = new Board();
 
   const [playerPositions, setPlayerPositions] = React.useState(JSON.parse(localStorage.getItem("playerPositions")) || {});
+
+  React.useEffect(() => {
+    const savedPositions = JSON.parse(localStorage.getItem("playerPositions")) || {};
+
+    const initialPlayers = users.map((username) => {
+      const p = new Player(username, "/images/candy land piece.png");
+
+      let idx = savedPositions[username];
+
+      // if missing/invalid -> off board
+      if (idx == null || idx < 0 || idx >= 135) idx = -1;
+
+      const square = idx >= 0 ? board.getSquare(idx) : null;
+      p.updatePosition(idx, square);
+
+      return p;
+    });
+
+    setPlayers(initialPlayers);
+    setPlayerPositions(savedPositions); // optional: sync state to what we loaded
+  }, []); // run once on page load
 
   function handleDeckClick() {
     //draw a card from the deck and update the current card display
