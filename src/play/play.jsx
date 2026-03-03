@@ -205,7 +205,7 @@ export function Play() {
     <main>
       <div className="player-info">
         <span>Player: </span>
-        <span>Uncle Mike</span>
+        <span>{localStorage.getItem("currentUser")}</span>
       </div>
       <div id="play-area">
         <div className="board">

@@ -38,6 +38,7 @@ export function Login() {
       alert("Invalid username or password! Please try again.");
       return;
     }
+    localStorage.setItem("currentUser", userInput);
     alert("Login successful! Redirecting to game...");
     navigate("/play");
   }
