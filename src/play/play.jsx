@@ -224,6 +224,9 @@ export function Play() {
   //these are for later, make the deliverables highest priority
   //also make sure the player turn doesn't reset every time you leave and come back
 
+  //TODO
+  //IMPLEMENT WEBSOCKET (where updates are given to users of other users doing things in real time)
+
   return (
     <main>
       <div className="player-info">
