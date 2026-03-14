@@ -222,6 +222,7 @@ export function Play() {
   //still need to implement making sure you can only move your player?
   //still need to implement only drawing one card on your turn
   //these are for later, make the deliverables highest priority
+  //also make sure the player turn doesn't reset every time you leave and come back
 
   return (
     <main>
