@@ -85,3 +85,5 @@ footer a:hover {
   border-top: 2px solid rgba(0, 0, 0, 0.25);
   opacity: 1;
 }
+/* todo */
+/* fix the header css so that when it's portrait and narrow it'll stack the menu below the logo */

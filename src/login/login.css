@@ -48,3 +48,9 @@ h1 {
   margin-inline-end: 0px;
   font-weight: bold;
 }
+
+.welcome {
+  text-align: center;
+  color: #0b2a3a;
+  font-weight: 600;
+}

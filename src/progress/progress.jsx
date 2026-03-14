@@ -19,6 +19,7 @@ export function Progress() {
         {playerArray.map((player) => {
           let percent = 0;
           if (player.position > 134) {
+            console.log(player.position);
             percent = 100;
           } else {
             percent = (player.position / 134) * 100;
