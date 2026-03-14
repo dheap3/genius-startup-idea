@@ -240,7 +240,7 @@ export function Play() {
               square = board.getSquare(player.position);
               ({ normalizedX, normalizedY } = square.getCoords());
             }
-
+            //eventually, add a unique playername on each image or have them create their own token so that it's distinguishable
             return (
               <img
                 key={player.name}
