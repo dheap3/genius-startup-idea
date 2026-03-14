@@ -133,7 +133,7 @@ export function Play() {
     return { normalizedX, normalizedY };
   }
 
-  //don't do anything yet, we'll just map out clicking on the card and the pieces moving for now
+  //don't do anything to click on the board yet, we'll just map out clicking on the card and the pieces moving for now
   function handleBoardClick(event) {
     const coords = getNormalizedClick(event, event.currentTarget);
     //move the players token to the square clicked (if correct color), alert if not
@@ -215,6 +215,9 @@ export function Play() {
     // console.log("Next player's turn!");
     setCurrentPlayerIndex((currentPlayerIndex + 1) % players.length);
   }
+  //still need to implement making sure you can only move your player?
+  //still need to implement only drawing one card on your turn
+  //these are for later, make the deliverables highest priority
 
   return (
     <main>

@@ -25,7 +25,7 @@ export function Progress() {
             percent = (player.position / 134) * 100;
           }
           return (
-            <div className="row">
+            <div className="row" key={player.name}>
               <span className="name">{player.name}</span>
               <progress value={player.position} max="100"></progress>
               <span className="percent">{player.position}%</span>
