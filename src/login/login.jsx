@@ -30,7 +30,7 @@ export function Login() {
 
   function logout() {
     localStorage.removeItem("currentUser");
-    navigate("/login");
+    navigate("/");
   }
 
   function processInfo(event) {
