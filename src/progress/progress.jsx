@@ -21,14 +21,15 @@ export function Progress() {
           if (player.position > 134) {
             console.log(player.position);
             percent = 100;
+          } else if (player.position < 0) {
           } else {
             percent = (player.position / 134) * 100;
           }
           return (
             <div className="row" key={player.name}>
               <span className="name">{player.name}</span>
-              <progress value={player.position} max="100"></progress>
-              <span className="percent">{player.position}%</span>
+              <progress value={percent} max="100"></progress>
+              <span className="percent">{Math.round(percent)}%</span>
             </div>
           );
         })}
