@@ -53,12 +53,16 @@ export function Play() {
 
       const square = idx >= 0 ? board.getSquare(idx) : null;
       p.updatePosition(idx, square);
+      savedPositions[username] = idx;
 
       return p;
     });
-
+    console.log("Initial players loaded:", initialPlayers);
     setPlayers(initialPlayers);
     setPlayerPositions(savedPositions); // optional: sync state to what we loaded
+    //update local storage with the same data
+    localStorage.setItem("players", JSON.stringify(initialPlayers));
+    localStorage.setItem("playerPositions", JSON.stringify(savedPositions));
   }, []); // run once on page load
 
   function handleDeckClick() {
