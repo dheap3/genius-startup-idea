@@ -1,3 +1,6 @@
+const port = process.argv.length > 2 ? process.argv[2] : 4000;
+app.use(express.static("public"));
+
 // CreateAuth a new user
 apiRouter.post("/auth/create", async (req, res) => {
   if (await findUser("email", req.body.email)) {
