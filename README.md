@@ -113,12 +113,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - I added the files to my project and checked with curl commands to make sure the calls are done correctly.
+- [x] **Static middleware for frontend** - The calls are done in an onEffect() and a link is input in the html
+- [x] **Calls to third party endpoints** - On the about page there is a random image of the day pulling up!
+- [x] **Backend service endpoints** - I copied over the files for the backend service!
+- [ ] **Frontend calls service endpoints** - It still uses localstorage... but the pieces are there to implement when I have more time next week (I want to get this in before I'm out of grace days :)
+- [x] **Supports registration, login, logout, and restricted endpoint** - If you're not logged in a currentplayer won't show up on the play page.
 
 ## 🚀 DB deliverable
 
