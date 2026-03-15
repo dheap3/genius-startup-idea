@@ -223,6 +223,7 @@ export function Play() {
   //still need to implement only drawing one card on your turn
   //these are for later, make the deliverables highest priority
   //also make sure the player turn doesn't reset every time you leave and come back
+  //new idea for api, generate a random image for each player when they create an account
 
   //TODO
   //IMPLEMENT WEBSOCKET (where updates are given to users of other users doing things in real time)
