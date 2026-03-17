@@ -16,7 +16,7 @@ export function About() {
         const height = containerEl.offsetHeight;
         const apiUrl = `https://picsum.photos/id/${data[0].id}/${width}/${height}?grayscale`;
 
-        setImage(data[0]);
+        setImage(apiUrl);
       })
       .catch();
   }, []);
