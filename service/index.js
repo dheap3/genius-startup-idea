@@ -1,10 +1,10 @@
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
-app.use(express.static("public"));
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const express = require("express");
 const uuid = require("uuid");
 const app = express();
+app.use(express.static("public"));
 
 // CreateAuth a new user
 apiRouter.post("/auth/create", async (req, res) => {
