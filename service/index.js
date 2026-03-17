@@ -3,8 +3,8 @@ const bcrypt = require("bcryptjs");
 const express = require("express");
 const uuid = require("uuid");
 const app = express();
-app.use(express.static("public"));
 
+const authCookieName = "token";
 // The scores and users are saved in memory and disappear whenever the service is restarted.
 let users = [];
 let scores = [];
