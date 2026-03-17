@@ -71,15 +71,15 @@ const verifyAuth = async (req, res, next) => {
   }
 };
 
-// GetScores
-apiRouter.get("/scores", verifyAuth, (_req, res) => {
-  res.send(scores);
+// GetProgress
+apiRouter.get("/progress", verifyAuth, (_req, res) => {
+  res.send(progress);
 });
 
-// SubmitScore
-apiRouter.post("/score", verifyAuth, (req, res) => {
-  scores = updateScores(req.body);
-  res.send(scores);
+// SubmitProgress
+apiRouter.post("/progress", verifyAuth, (req, res) => {
+  progress = updateProgress(req.body);
+  res.send(progress);
 });
 
 // Default error handler
