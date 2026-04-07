@@ -44,34 +44,28 @@ export function Login() {
 
   if (authenticated) {
     return (
-      <main className="container-fluid bg-secondary text-center">
-        <h1>Login to Candy Land</h1>
-        <p>Welcome, {currentUser}!</p>
+      <main>
+        <h1 id="title">Login to Candy Land</h1>
+        <div className="welcome">Welcome, {currentUser}!</div>
         <form onSubmit={processInfo}>
-          <button type="submit" className="btn btn-primary m-2">
-            Logout
-          </button>
-          <button type="submit" className="btn btn-success m-2">
-            Play
-          </button>
+          <div>
+            <button type="submit">Logout</button>
+            <button type="submit">Play</button>
+          </div>
         </form>
       </main>
     );
   }
 
   return (
-    <main className="container-fluid bg-secondary text-center">
-      <h1>Login to Candy Land</h1>
+    <main>
+      <h1 id="title">Login to Candy Land</h1>
       <form onSubmit={processInfo}>
-        <input type="text" placeholder="Email" required />
-        <input type="password" placeholder="Password" required />
+        <input className="input-box" type="text" placeholder="email@email.com" required></input>
+        <input className="input-box" type="password" placeholder="password"></input>
         <div>
-          <button type="submit" className="btn btn-primary m-2">
-            Login
-          </button>
-          <button type="submit" className="btn btn-secondary m-2">
-            Create
-          </button>
+          <button type="submit">Logout</button>
+          <button type="submit">Play</button>
         </div>
       </form>
     </main>
