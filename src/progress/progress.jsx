@@ -1,39 +1,52 @@
 import React from "react";
 import "./progress.css";
+import { getProgress } from "../api";
 
 export function Progress() {
-  const [playerPositions, setPlayerPositions] = React.useState(JSON.parse(localStorage.getItem("playerPositions")) || {});
-  let playerArray = [];
-  for (const player in playerPositions) {
-    playerArray.push({ name: player, position: playerPositions[player] });
+  const currentUser = localStorage.getItem("currentUser");
+  const [playerPosition, setPlayerPosition] = React.useState(null);
+
+  React.useEffect(() => {
+    async function loadProgress() {
+      try {
+        const data = await getProgress();
+        setPlayerPosition(data?.playerPosition ?? null);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    loadProgress();
+  }, []);
+
+  let percent = 0;
+  if (playerPosition > 134) {
+    percent = 100;
+  } else if (playerPosition >= 0) {
+    percent = (playerPosition / 134) * 100;
   }
+
   return (
-    <main>
-      <h1 id="title">Progress</h1>
-      <div className="progress-board">
-        <div id="header-row" className="row">
-          <span>Player</span>
-          <span>Progress Bar</span>
-          <span>Percent</span>
-        </div>
-        {playerArray.map((player) => {
-          let percent = 0;
-          if (player.position > 134) {
-            console.log(player.position);
-            percent = 100;
-          } else if (player.position < 0) {
-          } else {
-            percent = (player.position / 134) * 100;
-          }
-          return (
-            <div className="row" key={player.name}>
-              <span className="name">{player.name}</span>
-              <progress value={percent} max="100"></progress>
-              <span className="percent">{Math.round(percent)}%</span>
-            </div>
-          );
-        })}
-      </div>
+    <main className="container-fluid bg-secondary text-center">
+      <h1>Progress</h1>
+      <table className="table table-warning table-striped-columns">
+        <thead>
+          <tr>
+            <th>Player</th>
+            <th>Progress Bar</th>
+            <th>Percent</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{currentUser}</td>
+            <td>
+              <progress value={Math.round(percent)} max="100"></progress>
+            </td>
+            <td>{Math.round(percent)}%</td>
+          </tr>
+        </tbody>
+      </table>
     </main>
   );
 }
