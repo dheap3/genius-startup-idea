@@ -63,7 +63,7 @@ export function Play() {
       } catch (err) {
         console.error(err);
         const p = new Player(currentUser, "/images/candy land piece.png");
-        p.updatePosition(-1, null);
+        await updatePosition(p, -1, null);
         setPlayers([p]);
         setPlayerPositions({ [currentUser]: -1 });
       }
@@ -204,15 +204,15 @@ export function Play() {
     }
   }
 
-  function movePlayerToSquare(playerName, color) {
+  async function movePlayerToSquare(playerName, color) {
     //move the player's token to the specified square
     // console.log(`Moving player ${playerName} to square: ${color}`);
-    players.forEach((player) => {
+    for (const player of players) {
       if (player.name === playerName) {
         let [newSquare, newSquareIndex] = getNextSquare(player.square, color, player.position);
         // console.log(`New square for player ${playerName}:`, newSquare.getColor());
-        player.updatePosition(newSquareIndex, newSquare);
-        updateProgress(player);
+        await updatePosition(player, newSquareIndex, newSquare);
+        await updateProgress(player);
         //because we don't want to update a react state variable, we are creating a new player and replacing the old one
         let updatedPlayers = players.map((p) => {
           if (p.name === playerName) {
@@ -224,13 +224,22 @@ export function Play() {
         setPlayers(updatedPlayers);
         // setPlayers([...players]); //rerender the players
       }
-    });
+    }
   }
 
   function nextPlayer() {
     //advance to the next player's turn
     // console.log("Next player's turn!");
     setCurrentPlayerIndex((currentPlayerIndex + 1) % players.length);
+  }
+
+  async function updatePosition(player, index, square) {
+    //a helper to make sure the player object is updated and the db is also updated
+    //for one player
+    //Player player, int index, Square square
+
+    //update the player object
+    player.updatePosition(index, square);
   }
   //still need to implement making sure you can only move your player?
   //still need to implement only drawing one card on your turn

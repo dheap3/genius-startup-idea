@@ -64,8 +64,8 @@ export function Login() {
         <input className="input-box" type="text" placeholder="email@email.com" required></input>
         <input className="input-box" type="password" placeholder="password"></input>
         <div>
-          <button type="submit">Logout</button>
-          <button type="submit">Play</button>
+          <button type="submit">Login</button>
+          <button type="submit">Create</button>
         </div>
       </form>
     </main>
