@@ -193,9 +193,15 @@ export function Play() {
     return [new Square("End", { normalizedX: 0.5632401434080371, normalizedY: 0.2619359557665548 }), 999];
   }
 
-  function updateProgress(player) {
-    setPlayerPositions({ ...playerPositions, [player.name]: player.position });
-    localStorage.setItem("playerPositions", JSON.stringify({ ...playerPositions, [player.name]: player.position }));
+  async function updateProgress(player) {
+    const updated = { ...playerPositions, [player.name]: player.position };
+    setPlayerPositions(updated);
+
+    try {
+      await saveProgress(player.position);
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   function movePlayerToSquare(playerName, color) {
