@@ -3,6 +3,7 @@ import "./play.css";
 import { Square } from "./Board";
 import { Board } from "./Board";
 import { Player } from "./Board";
+import { getProgress, saveProgress } from "../api";
 
 export function Play() {
   const [board, setBoard] = React.useState(() => new Board(), []);
@@ -32,38 +33,44 @@ export function Play() {
 
   //one player for each user that has an account
   const [players, setPlayers] = React.useState([]);
-  const [users, setUsers] = React.useState(JSON.parse(localStorage.getItem("users")) || []);
+  // const [users, setUsers] = React.useState(JSON.parse(localStorage.getItem("users")) || []);
+  const currentUser = localStorage.getItem("currentUser");
   //new Player("Uncle Mike", "/images/candy land piece.png")
 
   const [currentPlayerIndex, setCurrentPlayerIndex] = React.useState(0);
   //I could probably balance the deck better, but that's for later
 
-  const [playerPositions, setPlayerPositions] = React.useState(JSON.parse(localStorage.getItem("playerPositions")) || {});
+  // const [playerPositions, setPlayerPositions] = React.useState(JSON.parse(localStorage.getItem("playerPositions")) || {});
+  const [playerPositions, setPlayerPositions] = React.useState({});
 
   React.useEffect(() => {
-    const savedPositions = JSON.parse(localStorage.getItem("playerPositions")) || {};
+    async function loadPlayer() {
+      if (!currentUser) return;
 
-    const initialPlayers = users.map((username) => {
-      const p = new Player(username, "/images/candy land piece.png");
+      try {
+        const progress = await getProgress();
+        let idx = progress?.playerPosition;
 
-      let idx = savedPositions[username];
+        // if missing/invalid -> off board
+        if (idx == null || idx < 0 || idx >= 135) idx = -1;
 
-      // if missing/invalid -> off board
-      if (idx == null || idx < 0 || idx >= 135) idx = -1;
+        const p = new Player(currentUser, "/images/candy land piece.png");
+        const square = idx >= 0 ? board.getSquare(idx) : null;
+        p.updatePosition(idx, square);
 
-      const square = idx >= 0 ? board.getSquare(idx) : null;
-      p.updatePosition(idx, square);
-      savedPositions[username] = idx;
+        setPlayers([p]);
+        setPlayerPositions({ [currentUser]: idx });
+      } catch (err) {
+        console.error(err);
+        const p = new Player(currentUser, "/images/candy land piece.png");
+        p.updatePosition(-1, null);
+        setPlayers([p]);
+        setPlayerPositions({ [currentUser]: -1 });
+      }
+    }
 
-      return p;
-    });
-    console.log("Initial players loaded:", initialPlayers);
-    setPlayers(initialPlayers);
-    setPlayerPositions(savedPositions); // optional: sync state to what we loaded
-    //update local storage with the same data
-    localStorage.setItem("players", JSON.stringify(initialPlayers));
-    localStorage.setItem("playerPositions", JSON.stringify(savedPositions));
-  }, []); // run once on page load
+    loadPlayer();
+  }, [board, currentUser]); // run once on page load
 
   function handleDeckClick() {
     //draw a card from the deck and update the current card display
