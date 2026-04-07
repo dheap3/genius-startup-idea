@@ -42,6 +42,8 @@ apiRouter.post("/auth/login", async (req, res) => {
     if (await bcrypt.compare(req.body.password, user.password)) {
       user.token = randomUUID();
       await DB.updateUser(user);
+      setAuthCookie(res, user.token);
+      res.send({ email: user.email });
       return;
     }
   }
@@ -82,6 +84,25 @@ apiRouter.post("/progress", verifyAuth, async (req, res) => {
   const position = await DB.getPlayerPosition(user.email);
   res.send(position);
 });
+
+async function createUser(email, password) {
+  const passwordHash = await bcrypt.hash(password, 10);
+
+  return {
+    email: email,
+    password: passwordHash,
+    token: randomUUID(),
+    playerPosition: null,
+  };
+}
+
+function setAuthCookie(res, authToken) {
+  res.cookie(authCookieName, authToken, {
+    secure: false,
+    httpOnly: true,
+    sameSite: "strict",
+  });
+}
 
 // Default error handler
 app.use(function (err, req, res, next) {
