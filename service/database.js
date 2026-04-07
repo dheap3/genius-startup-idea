@@ -4,7 +4,7 @@ const config = require("./dbConfig.json");
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
 const db = client.db("candyLand");
-const userCollection = db.collection("user");
+const userCollection = db.collection("users");
 // const scoreCollection = db.collection("position");
 
 // This will asynchronously test the connection and exit the process if it fails
@@ -38,19 +38,13 @@ async function updateUserRemoveAuth(user) {
   await userCollection.updateOne({ email: user.email }, { $unset: { token: 1 } });
 }
 
-// async function addScore(score) {
-//   return scoreCollection.insertOne(score);
-// }
+async function updatePlayerPosition(email, playerPosition) {
+  await userCollection.updateOne({ email: email }, { $set: { playerPosition: playerPosition } });
+}
 
-// function getHighScores() {
-//   const query = { score: { $gt: 0, $lt: 900 } };
-//   const options = {
-//     sort: { score: -1 },
-//     limit: 10,
-//   };
-//   const cursor = scoreCollection.find(query, options);
-//   return cursor.toArray();
-// }
+function getPlayerPosition(email) {
+  return userCollection.findOne({ email: email }, { playerPosition: 1, _id: 0 });
+}
 
 module.exports = {
   getUser,
@@ -58,6 +52,6 @@ module.exports = {
   addUser,
   updateUser,
   updateUserRemoveAuth,
-  // addScore,
-  // getHighScores,
+  updatePlayerPosition,
+  getPlayerPosition,
 };
