@@ -27,26 +27,21 @@ export function Progress() {
   }
 
   return (
-    <main className="container-fluid bg-secondary text-center">
-      <h1>Progress</h1>
-      <table className="table table-warning table-striped-columns">
-        <thead>
-          <tr>
-            <th>Player</th>
-            <th>Progress Bar</th>
-            <th>Percent</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{currentUser}</td>
-            <td>
-              <progress value={Math.round(percent)} max="100"></progress>
-            </td>
-            <td>{Math.round(percent)}%</td>
-          </tr>
-        </tbody>
-      </table>
+    <main>
+      <h1 id="title">Progress</h1>
+      <div className="progress-board">
+        <div id="header-row" className="row">
+          <span>Player</span>
+          <span>Progress Bar</span>
+          <span>Percent</span>
+        </div>
+
+        <div className="row">
+          <span className="name">{currentUser}</span>
+          <progress value={percent} max="100"></progress>
+          <span className="percent">{Math.round(percent)}%</span>
+        </div>
+      </div>
     </main>
   );
 }
