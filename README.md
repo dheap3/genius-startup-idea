@@ -124,8 +124,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
+- [x] **Stores data in MongoDB** - The data is persistent, both the progress and the board will pull from the same place. If you log out and then log in again your info will come back.
+- [x] **Stores credentials in MongoDB** - if you logout you can login again with the same credentials
 
 ## 🚀 WebSocket deliverable
 
