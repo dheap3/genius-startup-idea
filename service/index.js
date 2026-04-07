@@ -4,7 +4,6 @@ const express = require("express");
 const { randomUUID } = require("crypto");
 const app = express();
 const DB = require("./database");
-user.token = randomUUID();
 
 const authCookieName = "token";
 
@@ -30,17 +29,18 @@ apiRouter.post("/auth/create", async (req, res) => {
     res.status(409).send({ msg: "Existing user" });
   } else {
     const user = await createUser(req.body.email, req.body.password);
-
-    await DB.updateUser(user);
+    await DB.addUser(user);
+    setAuthCookie(res, user.token);
+    res.send({ email: user.email });
   }
 });
 
 // GetAuth login an existing user
 apiRouter.post("/auth/login", async (req, res) => {
-  const user = await DB.getUser("email", req.body.email);
+  const user = await DB.getUser(req.body.email);
   if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {
-      user.token = uuid.v4();
+      user.token = randomUUID();
       await DB.updateUser(user);
       return;
     }
@@ -77,6 +77,7 @@ apiRouter.get("/progress", verifyAuth, async (req, res) => {
 
 // SubmitProgress
 apiRouter.post("/progress", verifyAuth, async (req, res) => {
+  const user = await DB.getUserByToken(req.cookies[authCookieName]);
   await DB.updatePlayerPosition(user.email, req.body.playerPosition);
   const position = await DB.getPlayerPosition(user.email);
   res.send(position);
