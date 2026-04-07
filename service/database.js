@@ -43,7 +43,7 @@ async function updatePlayerPosition(email, playerPosition) {
 }
 
 function getPlayerPosition(email) {
-  return userCollection.findOne({ email: email }, { playerPosition: 1, _id: 0 });
+  return userCollection.findOne({ email: email }, { projection: { playerPosition: 1, _id: 0 } });
 }
 
 module.exports = {

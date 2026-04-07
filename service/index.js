@@ -3,14 +3,13 @@ const bcrypt = require("bcryptjs");
 const express = require("express");
 const { randomUUID } = require("crypto");
 const app = express();
+const DB = require("./database");
+user.token = randomUUID();
 
 const authCookieName = "token";
-// The scores and users are saved in memory and disappear whenever the service is restarted.
-let users = [];
-let scores = [];
 
 // The service port. In production the front-end code is statically hosted by the service on the same port.
-const port = process.argv.length > 2 ? process.argv[2] : 3000;
+const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 // JSON body parsing using built-in middleware
 app.use(express.json());
@@ -27,24 +26,22 @@ app.use(`/api`, apiRouter);
 
 // CreateAuth a new user
 apiRouter.post("/auth/create", async (req, res) => {
-  if (await findUser("email", req.body.email)) {
+  if (await DB.getUser(req.body.email)) {
     res.status(409).send({ msg: "Existing user" });
   } else {
     const user = await createUser(req.body.email, req.body.password);
 
-    setAuthCookie(res, user.token);
-    res.send({ email: user.email });
+    await DB.updateUser(user);
   }
 });
 
 // GetAuth login an existing user
 apiRouter.post("/auth/login", async (req, res) => {
-  const user = await findUser("email", req.body.email);
+  const user = await DB.getUser("email", req.body.email);
   if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {
       user.token = uuid.v4();
-      setAuthCookie(res, user.token);
-      res.send({ email: user.email });
+      await DB.updateUser(user);
       return;
     }
   }
@@ -53,9 +50,9 @@ apiRouter.post("/auth/login", async (req, res) => {
 
 // DeleteAuth logout a user
 apiRouter.delete("/auth/logout", async (req, res) => {
-  const user = await findUser("token", req.cookies[authCookieName]);
+  const user = await DB.getUserByToken(req.cookies[authCookieName]);
   if (user) {
-    delete user.token;
+    await DB.updateUserRemoveAuth(user);
   }
   res.clearCookie(authCookieName);
   res.status(204).end();
@@ -63,7 +60,7 @@ apiRouter.delete("/auth/logout", async (req, res) => {
 
 // Middleware to verify that the user is authorized to call an endpoint
 const verifyAuth = async (req, res, next) => {
-  const user = await findUser("token", req.cookies[authCookieName]);
+  const user = await DB.getUserByToken(req.cookies[authCookieName]);
   if (user) {
     next();
   } else {
@@ -72,14 +69,17 @@ const verifyAuth = async (req, res, next) => {
 };
 
 // GetProgress
-apiRouter.get("/progress", verifyAuth, (_req, res) => {
-  res.send(progress);
+apiRouter.get("/progress", verifyAuth, async (req, res) => {
+  const user = await DB.getUserByToken(req.cookies[authCookieName]);
+  const position = await DB.getPlayerPosition(user.email);
+  res.send(position);
 });
 
 // SubmitProgress
-apiRouter.post("/progress", verifyAuth, (req, res) => {
-  progress = updateProgress(req.body);
-  res.send(progress);
+apiRouter.post("/progress", verifyAuth, async (req, res) => {
+  await DB.updatePlayerPosition(user.email, req.body.playerPosition);
+  const position = await DB.getPlayerPosition(user.email);
+  res.send(position);
 });
 
 // Default error handler
