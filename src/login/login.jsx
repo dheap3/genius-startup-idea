@@ -29,8 +29,15 @@ export function Login() {
   }
 
   function logout() {
-    localStorage.removeItem("currentUser");
-    navigate("/");
+    fetch(`/api/auth/logout`, {
+      method: "delete",
+    })
+      .catch(() => {
+        // Logout failed. Assuming offline
+      })
+      .finally(() => {
+        localStorage.removeItem("userName");
+      });
   }
 
   function processInfo(event) {
