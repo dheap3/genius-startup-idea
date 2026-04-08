@@ -3,7 +3,7 @@ import "./play.css";
 import { Square } from "./Board";
 import { Board } from "./Board";
 import { Player } from "./Board";
-import { getProgress, saveProgress } from "../api";
+import { getProgress, saveProgress, getMe } from "../api";
 import { connectSocket } from "../socket";
 
 export function Play() {
@@ -39,7 +39,8 @@ export function Play() {
   //one player for each user that has an account
   const [players, setPlayers] = React.useState([]);
   // const [users, setUsers] = React.useState(JSON.parse(localStorage.getItem("users")) || []);
-  const currentUser = localStorage.getItem("currentUser");
+  // const currentUser = localStorage.getItem("currentUser");
+  const [currentUser, setCurrentUser] = React.useState(null);
   //new Player("Uncle Mike", "/images/candy land piece.png")
 
   const [currentPlayerIndex, setCurrentPlayerIndex] = React.useState(0);
@@ -47,6 +48,20 @@ export function Play() {
 
   // const [playerPositions, setPlayerPositions] = React.useState(JSON.parse(localStorage.getItem("playerPositions")) || {});
   const [playerPositions, setPlayerPositions] = React.useState({});
+
+  React.useEffect(() => {
+    async function loadUser() {
+      try {
+        const user = await getMe();
+        setCurrentUser(user);
+      } catch (err) {
+        console.error(err);
+        setCurrentUser(null);
+      }
+    }
+
+    loadUser();
+  }, []);
 
   React.useEffect(() => {
     async function loadPlayer() {
@@ -59,21 +74,21 @@ export function Play() {
         // if missing/invalid -> off board
         if (idx == null || idx < 0 || idx >= 135) idx = -1;
 
-        const p = new Player(currentUser, "/images/candy land piece.png");
+        const p = new Player(currentUser.email, "/images/candy land piece.png");
         const square = idx >= 0 ? board.getSquare(idx) : null;
         p.updatePosition(idx, square);
 
         setPlayers([p]);
-        setPlayerPositions({ [currentUser]: idx });
+        setPlayerPositions({ [currentUser.email]: idx });
       } catch (err) {
         console.error(err);
-        const p = new Player(currentUser, "/images/candy land piece.png");
+        const p = new Player(currentUser.email, "/images/candy land piece.png");
         await updatePosition(p, -1, null);
         setPlayers((prev) => {
           const filtered = prev.filter((x) => x.name !== p.name);
           return [...filtered, p];
         });
-        setPlayerPositions({ [currentUser]: -1 });
+        setPlayerPositions({ [currentUser.email]: -1 });
       }
     }
 
@@ -92,6 +107,25 @@ export function Play() {
 
     return () => socketRef.current?.close();
   }, []);
+
+  React.useEffect(() => {
+    socketRef.current = connectSocket((msg) => {
+      if (msg.type === "move") {
+        setPlayers((prev) =>
+          prev.map((p) => {
+            if (p.name !== msg.player) return p;
+
+            const square = msg.position >= 0 ? board.getSquare(msg.position) : null;
+
+            p.updatePosition(msg.position, square);
+            return p;
+          }),
+        );
+      }
+    });
+
+    return () => socketRef.current?.close();
+  }, [board]);
 
   function handleDeckClick() {
     //draw a card from the deck and update the current card display
