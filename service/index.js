@@ -4,6 +4,7 @@ const express = require("express");
 const { randomUUID } = require("crypto");
 const app = express();
 const DB = require("./database");
+const { peerProxy, broadcastGameEvent } = require("./peerProxy");
 
 const authCookieName = "token";
 
