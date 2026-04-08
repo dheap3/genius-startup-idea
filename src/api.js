@@ -55,6 +55,20 @@ export async function getProgress() {
   return response.json();
 }
 
+export async function getAllProgress() {
+  const response = await fetch("/api/progress/all", {
+    method: "GET",
+    credentials: "include",
+  });
+
+  if (!response.ok) {
+    const data = await response.json().catch(() => ({}));
+    throw new Error(data.msg || "Failed to load all progress");
+  }
+
+  return response.json();
+}
+
 export async function saveProgress(playerPosition) {
   const response = await fetch("/api/progress", {
     method: "POST",

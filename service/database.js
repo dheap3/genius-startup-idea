@@ -46,6 +46,12 @@ function getPlayerPosition(email) {
   return userCollection.findOne({ email: email }, { projection: { playerPosition: 1, _id: 0 } });
 }
 
+function getAllPlayerPositions() {
+  return userCollection
+    .find({ playerPosition: { $exists: true } }, { projection: { email: 1, playerPosition: 1, _id: 0 } })
+    .toArray();
+}
+
 module.exports = {
   getUser,
   getUserByToken,
@@ -54,4 +60,5 @@ module.exports = {
   updateUserRemoveAuth,
   updatePlayerPosition,
   getPlayerPosition,
+  getAllPlayerPositions,
 };

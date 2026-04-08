@@ -78,6 +78,11 @@ apiRouter.get("/progress", verifyAuth, async (req, res) => {
   res.send(position);
 });
 
+apiRouter.get("/progress/all", verifyAuth, async (_req, res) => {
+  const positions = await DB.getAllPlayerPositions();
+  res.send(positions);
+});
+
 // SubmitProgress
 apiRouter.post("/progress", verifyAuth, async (req, res) => {
   const user = await DB.getUserByToken(req.cookies[authCookieName]);
