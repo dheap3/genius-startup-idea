@@ -97,24 +97,16 @@ apiRouter.get("/progress/all", verifyAuth, async (_req, res) => {
 // SubmitProgress
 apiRouter.post("/progress", verifyAuth, async (req, res) => {
   const user = await DB.getUserByToken(req.cookies[authCookieName]);
+
   await DB.updatePlayerPosition(user.email, req.body.playerPosition);
+
   const position = await DB.getPlayerPosition(user.email);
 
-  broadcastGameEvent({
+  broadcast({
     type: "move",
-    user: user.email,
-    playerPosition: position.playerPosition,
-    message: `${user.email} moved to square ${position.playerPosition}`,
+    player: user.email,
+    position: position.playerPosition,
   });
-
-  if (position.playerPosition >= 134) {
-    broadcastGameEvent({
-      type: "win",
-      user: user.email,
-      playerPosition: position.playerPosition,
-      message: `${user.email} won the game!`,
-    });
-  }
 
   res.send(position);
 });

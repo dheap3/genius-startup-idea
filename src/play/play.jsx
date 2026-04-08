@@ -4,6 +4,7 @@ import { Square } from "./Board";
 import { Board } from "./Board";
 import { Player } from "./Board";
 import { getProgress, saveProgress } from "../api";
+import { connectSocket } from "../socket";
 
 export function Play() {
   const [board, setBoard] = React.useState(() => new Board(), []);
@@ -28,6 +29,10 @@ export function Play() {
     "images/cards/Lollipop.png",
     "images/cards/IceCream.png",
   ]);
+
+  //websocket
+  const socketRef = React.useRef(null);
+
   //used when getting all the values of the boord squares coords
   const [boardSquares, setBoardSquares] = React.useState([]);
 
@@ -74,6 +79,19 @@ export function Play() {
 
     loadPlayer();
   }, [board, currentUser]); // run once on page load
+
+  React.useEffect(() => {
+    socketRef.current = connectSocket((msg) => {
+      if (msg.type === "move") {
+        setPlayerPositions((prev) => ({
+          ...prev,
+          [msg.player]: msg.position,
+        }));
+      }
+    });
+
+    return () => socketRef.current?.close();
+  }, []);
 
   function handleDeckClick() {
     //draw a card from the deck and update the current card display
