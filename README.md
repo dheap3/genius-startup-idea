@@ -131,7 +131,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [x] **Backend listens for WebSocket connection** - I added the files and referenced them so that it's listening and pinging
+- [x] **Backend listens for WebSocket connection** - I added the files and referenced them so that it's listening and pinging. You can pull up an incognito window (logout and then log back in) and then the data will show up in both windows after being updated in one of them
 - [x] **Frontend makes WebSocket connection** - The frontend connects and pulls data from the database while listening
 - [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
 - [x] **WebSocket data displayed** - It doesn't render immediately, but after a refresh the progress page will reflect the data from the websocket!
