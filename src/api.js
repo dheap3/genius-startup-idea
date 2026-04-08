@@ -14,6 +14,19 @@ export async function createAccount(email, password) {
   return response.json();
 }
 
+export async function getMe() {
+  const response = await fetch("/api/auth/me", {
+    method: "GET",
+    credentials: "include",
+  });
+
+  if (!response.ok) {
+    return null;
+  }
+
+  return response.json();
+}
+
 export async function login(email, password) {
   const response = await fetch("/api/auth/login", {
     method: "POST",
@@ -62,8 +75,7 @@ export async function getAllProgress() {
   });
 
   if (!response.ok) {
-    const data = await response.json().catch(() => ({}));
-    throw new Error(data.msg || "Failed to load all progress");
+    throw new Error("Failed to get progress");
   }
 
   return response.json();

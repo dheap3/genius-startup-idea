@@ -24,6 +24,17 @@ app.use(express.static("public"));
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
+//check if the user is authorized
+apiRouter.get("/auth/me", async (req, res) => {
+  const user = await DB.getUserByToken(req.cookies[authCookieName]);
+
+  if (user) {
+    res.send({ email: user.email });
+  } else {
+    res.status(401).send({ msg: "Unauthorized" });
+  }
+});
+
 // CreateAuth a new user
 apiRouter.post("/auth/create", async (req, res) => {
   if (await DB.getUser(req.body.email)) {
@@ -79,8 +90,8 @@ apiRouter.get("/progress", verifyAuth, async (req, res) => {
 });
 
 apiRouter.get("/progress/all", verifyAuth, async (_req, res) => {
-  const positions = await DB.getAllPlayerPositions();
-  res.send(positions);
+  const users = await DB.getAllPlayerPositions();
+  res.send(users);
 });
 
 // SubmitProgress

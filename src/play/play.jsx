@@ -64,7 +64,10 @@ export function Play() {
         console.error(err);
         const p = new Player(currentUser, "/images/candy land piece.png");
         await updatePosition(p, -1, null);
-        setPlayers([p]);
+        setPlayers((prev) => {
+          const filtered = prev.filter((x) => x.name !== p.name);
+          return [...filtered, p];
+        });
         setPlayerPositions({ [currentUser]: -1 });
       }
     }
@@ -254,7 +257,7 @@ export function Play() {
     <main>
       <div className="player-info">
         <span>Player: </span>
-        <span>{localStorage.getItem("currentUser")}</span>
+        <span>{currentUser?.email}</span>
       </div>
       <div id="play-area">
         <div className="board">
